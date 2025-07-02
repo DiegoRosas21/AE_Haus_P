@@ -1,46 +1,57 @@
-# Distancia de Hausdorff para Shapefiles de Áreas de Endemismo
+# Hausdorff Distance for Areas of Endemism (Shapefiles)
 
-Este proyecto contiene scripts de Python para calcular la matriz de distancias de Hausdorff entre un conjunto de archivos shapefile de polígonos (Áreas de Endemismo). La distancia de Hausdorff mide cuán lejos están dos geometrías entre sí.
+This project contains Python scripts to calculate the Hausdorff distance matrix between a set of polygon shapefile files (Areas of Endemism). The Hausdorff distance measures how far apart two geometries are from each other.
 
-El script procesa todos los shapefiles de un directorio, calcula la distancia por pares y guarda los resultados en un archivo CSV.
+The script processes all shapefiles in a directory, calculates pairwise distances, and saves the results to a CSV file.
 
-## Características
+## Features
 
-- Carga automática de todos los archivos `.shp` de un directorio.
-- Unificación de geometrías por capa para un cálculo eficiente.
-- Cálculo de la matriz de distancias de Hausdorff.
-- Exportación de la matriz de resultados a un archivo CSV.
-- **Versión alternativa (`main1.py`)** con barras de progreso para una mejor experiencia de usuario en procesos largos.
+- Automatic loading of all `.shp` files from a directory.
+- Geometry unification by layer for efficient calculation.
+- Hausdorff distance matrix calculation.
+- Export of results matrix to a CSV file.
+- **Alternative version (`main1.py`)** with progress bars for better user experience during long processes.
 
-## Scripts Disponibles
+## Available Scripts
 
-- **`main.py`**: La versión base y funcional del script.
-- **`main1.py`**: Una versión que utiliza la librería `tqdm` para mostrar barras de progreso durante la carga de datos, el procesamiento y el guardado de resultados. Se recomienda usar este script para conjuntos de datos grandes.
+- **`main.py`**: The base and functional version of the script.
+- **`main1.py`**: A version that uses the `tqdm` library to display progress bars during data loading, processing, and result saving. This script is recommended for large datasets.
 
-## Datos
+## Data
 
-- **`datos/`**: Esta carpeta contiene los datos originales con los que se obtuvieron los resultados para el artículo.
-- **`datos_ejemplo/`**: Esta carpeta contiene un pequeño conjunto de datos para propósitos demostrativos.
+- **`data/`**: This folder contains the original data used to obtain the results for the article (provided as a .zip file that needs to be extracted).
+- **`data_ex/`**: This folder contains a small dataset for demonstration purposes.
 
-## Requisitos
+## Requirements
 
-- Python 3.8 o superior
-- Las librerías listadas en `requirements.txt`.
+- Python 3.8 or higher
+- Libraries listed in `requirements.txt`.
 
-## Uso
+## Usage
 
-1.  **Prepara tus datos**: Coloca tus archivos shapefile (`.shp` y sus archivos asociados `.dbf`, `.shx`, etc.) en la carpeta `datos_ejemplo`, o crea una nueva carpeta y actualiza la variable `directory` en el script.
+1.  **Prepare your data**: Place your shapefile files (`.shp` and their associated files `.dbf`, `.shx`, etc.) in the `data_ex` folder, or create a new folder and update the `directory` variable in the script.
 
-2.  **Configura el script (Opcional)**:
-    Si deseas usar una carpeta de datos diferente o cambiar el nombre del archivo de salida, puedes modificar las siguientes líneas al principio del script (`main.py` o `main1.py`):
+2.  **Configure the script (Optional)**:
+    If you want to use a different data folder or change the output file name, you can modify the following lines at the beginning of the script (`main.py` or `main1.py`):
     ```python
-    # Ruta del directorio donde se encuentran los shapefiles
-    directory = 'datos_ejemplo' # Cambia a 'datos' o tu carpeta personalizada
+    # Path to the directory where the shapefiles are located
+    directory = 'data_ex' # Change to 'data' or your custom folder
 
-    # Ruta y nombre del archivo CSV donde se guardarán los resultados.
-    output_file = 'dist_ex.csv' # Puedes cambiar el nombre del archivo de salida
+    # Path and name of the CSV file where results will be saved.
+    output_file = 'dist_ex.csv' # You can change the output file name
     ```
 
-3.  **Ejecuta el script**
+3.  **Run the script**
 
-4.  **Revisa los resultados**: Una vez finalizado el proceso, encontrarás el archivo CSV (por defecto, `dist_ex.csv`) en el directorio principal. 
+4.  **Review the results**: Once the process is finished, you will find the CSV file (by default, `dist_ex.csv`) in the main directory.
+
+## Example Output
+
+The resulting CSV file (data_ex) will look like this:
+
+```
+,Austroriparianprv,Chihuahuanprv,Oregonianprv
+Austroriparianprv,0,27.016049229381334,46.66163362381724
+Chihuahuanprv,27.016049229381334,0,30.50748108358096
+Oregonianprv,46.66163362381724,30.50748108358096,0
+```
